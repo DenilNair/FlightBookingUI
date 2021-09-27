@@ -1,0 +1,46 @@
+
+
+<form  #search="ngForm" (ngSubmit)="SearchFlights(search.value)">
+  <div class="row" >
+    <div class="col">
+      <input type="text" name="source"  class="form-control" placeholder="source" ngModel>
+    </div>
+    <div class="col">
+      <input type="text" name="destination" class="form-control" placeholder="destination" ngModel>
+    </div>
+    <div class="col">
+      <input  type="date" name="departure"  class="form-control" placeholder="Departure" ngModel>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary">Search</button>
+    </div>
+  </div>
+</form>
+<div *ngIf="listFlight.length">
+<table>
+<tr>
+
+<th class="deni">Flight Number</th>
+<th class="deni">Source</th>
+
+<th class="deni"></th>
+<th class="deni">Schedule Start Time</th>
+<th class="deni">Schedule End TIme</th>
+<th class="deni">Available Seats</th>
+<th class="deni">Available Seats</th>
+</tr>
+
+<tr *ngFor ="let flight of listFlight">
+
+<td class="deni">{{flight.flightNo}}</td>
+<td class="deni">{{flight.source}}</td>
+<td class="deni"><div class="line" style="margin-right: 2px;"><p class="timediff">{{flight.scheduledEndTime-flight.scheduledStartTime}}</p></div></td>
+<td class="deni">{{flight.destination}}</td>
+<td class="deni">{{flight.scheduledStartTime}}</td>
+<td class="deni">{{flight.scheduledEndTime}}</td>
+<td class="deni">{{flight.availableSeat}}</td>
+<td class="deni">  <button class="btn btn-primary bookflight" data-toggle="modal" data-target="#form">Book Ticket</button></td>
+</tr>
+</table>
+</div>
+<div *ngIf="noFlight"><p> No Flight found</p></div>

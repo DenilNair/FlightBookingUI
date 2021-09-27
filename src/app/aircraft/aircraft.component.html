@@ -1,0 +1,38 @@
+
+<div *ngIf="errBlock==true"><h2> unable to connect to Aircraft Service Please contact administrator</h2></div>
+<form  #search="ngForm" (ngSubmit)="SearchAircraft(search.value)">
+  <div class="row" >
+    <div class="col">
+      <input type="text" name="companyName"  class="form-control" placeholder="Company Name" ngModel>
+    </div>
+    <div class="col">
+      <input type="text" name="aircraftCode" class="form-control" placeholder="Aircraft Code" ngModel>
+    </div>
+    <div class="col">
+      <input  type="text" name="sittingCapacity"  class="form-control" placeholder="Sitting Capacity" ngModel>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary">Search</button>
+    </div>
+  </div>
+</form>
+<div *ngIf="listAircraft.length">
+<table>
+<tr>
+
+<th class="deni"> Company Name</th>
+<th class="deni">Aircraft type</th>
+<th class="deni">Aircraft Code</th>
+<th class="deni"> Sitting Capacity </th>
+</tr>
+
+<tr *ngFor ="let flight of listAircraft">
+
+<td class="deni">{{flight.companyName}}</td>
+<td class="deni">{{flight.aircraftType}}</td>
+<td class="deni">{{flight.aircraftCode}}</td>
+<td class="deni">{{flight.sittingCapacity}}</td>
+
+</tr>
+
+<div *ngIf="noAirCraft"><p> No Flight found</p></div>
