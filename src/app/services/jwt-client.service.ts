@@ -11,9 +11,10 @@ export class JwtClientService {
   constructor(private httpClient:HttpClient) { }
 
   public generateToken(request ){
-    console.log(request);
-    return this.httpClient.post("http://localhost:9192/authenticate",request,{responseType:'text' as 'json'}).pipe(catchError(this.handleErrorrror));
+    console.log("generateToken  ");
+    return this.httpClient.post("http://localhost:9192/authenticate",request,{responseType:'text' as 'json'});
   }
+
 
   public welcome(token){
     let tokenStr='Bearer '+token;

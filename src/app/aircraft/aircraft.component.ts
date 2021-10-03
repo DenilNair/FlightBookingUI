@@ -5,6 +5,11 @@ import { HttpClient } from '@angular/common/http';
 import { aircraftDetailsServies } from '../services/aircraftDetailsServices';
 import { AircraftService } from '../classes/AircraftDetails';
 import { MatButtonModule } from '@angular/material/button' ;
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '../services/notification.service';
+
+import { title } from 'process';
+import { flightDetailsServies } from '../services/flightDetailsServices';
 @Component({
   selector: 'app-aircraft',
   templateUrl: './aircraft.component.html',
@@ -12,7 +17,8 @@ import { MatButtonModule } from '@angular/material/button' ;
 })
 export class AircraftComponent implements OnInit {
 
-  constructor( private formBuilder: FormBuilder,private httpCli:HttpClient,private aircraftService:aircraftDetailsServies) { }
+  constructor( private formBuilder: FormBuilder,private httpCli:HttpClient,private aircraftService:aircraftDetailsServies,
+    private _snackBar: MatSnackBar,private flightService:flightDetailsServies) { }
 
   listAircraft:AircraftService[];
   noAirCraft=true;
@@ -51,4 +57,59 @@ export class AircraftComponent implements OnInit {
 
 }
 
+
+openSnackBar(message) {
+
+ // this._snackBar.open(message, "null",  {duration:0 });
+  this._snackBar.open("message", "action", {
+    duration: 2,
+  });
+  this._snackBar.dismiss;
+
+}
+
+
+ScheduleFlight(temp){
+
+  console.log("toaster",temp);
+
+let response=this.flightService.postFlights(temp);
+
+response.subscribe(
+  (data) => {
+    //first time token added to local storage
+    console.log('token value --- ' + data);
+
+
+  },
+  (error) => {
+    this.errBlock = true;
+    this.errorMsg = error.message;
+    console.log('Eception caugth can\'t schedule a  flight ' + this.errorMsg);
+  }
+);
+  //this.toaster.success("message", "title");
+//this.notificationService.showSuccess("flight scheduled ","successfull");
+//  this.openSnackBar("New Flight Scheduled");
+}
+AddAircraft(temp){
+  //this.openSnackBar("New Aircraft Added");
+  console.log("toaster",temp);
+
+  let response=this.aircraftService.postAircraft(temp);
+
+  response.subscribe(
+    (data) => {
+      //first time token added to local storage
+      console.log('aircraft added --- ' + data);
+
+
+    },
+    (error) => {
+      this.errBlock = true;
+      this.errorMsg = error.message;
+      console.log('Eception caugth can\'t add new  aircraft ' + this.errorMsg);
+    }
+  );
+}
 }

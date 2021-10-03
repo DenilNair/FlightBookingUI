@@ -9,7 +9,9 @@
 
 <style>
   :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
     font-size: 14px;
     color: #333;
     box-sizing: border-box;
@@ -42,7 +44,7 @@
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: #0033A0;
+    background-color: #0033a0;
     color: white;
     font-weight: 600;
   }
@@ -92,7 +94,7 @@
   .card {
     border-radius: 4px;
     border: 1px solid #eee;
-    background-color: #0033A0;
+    background-color: #0033a0;
     height: 40px;
     width: 200px;
     margin: 0 8px 16px;
@@ -103,7 +105,7 @@
     align-items: center;
     transition: all 0.2s ease-in-out;
     line-height: 24px;
-    text-align:center;
+    text-align: center;
   }
 
   .card-container .card:not(:last-child) {
@@ -112,8 +114,8 @@
 
   .card.card-small {
     height: 16px;
-    width: 168px;align-items: center;
-
+    width: 168px;
+    align-items: center;
   }
 
   .card-container .card:not(.highlight-card) {
@@ -130,19 +132,17 @@
   }
 
   .card.highlight-card {
-    background-color: #0033A0;
+    background-color: #0033a0;
     color: white;
     font-weight: 600;
     border: none;
     width: auto;
     min-width: 10%;
     position: relative;
-    text-align:center;
-
+    text-align: center;
   }
 
   .card.card.highlight-card span {
-
   }
 
   svg#rocket {
@@ -198,7 +198,7 @@
   }
 
   .terminal pre {
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
     color: white;
     padding: 0 1rem 1rem;
     margin: 0;
@@ -242,18 +242,19 @@
     align-items: center;
     font-size: 12px;
     padding: 3px 10px;
-    border: 1px solid rgba(27,31,35,.2);
+    border: 1px solid rgba(27, 31, 35, 0.2);
     border-radius: 3px;
-    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
+    background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);
     margin-left: 4px;
     font-weight: 600;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+      sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   }
 
   .github-star-badge:hover {
-    background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
-    border-color: rgba(27,31,35,.35);
-    background-position: -.5em;
+    background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
+    border-color: rgba(27, 31, 35, 0.35);
+    background-position: -0.5em;
   }
 
   .github-star-badge .material-icons {
@@ -270,11 +271,9 @@
     width: 1920px;
   }
 
-
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
-
-    .card-container > *:not(.circle-link) ,
+    .card-container > *:not(.circle-link),
     .terminal {
       width: 100%;
     }
@@ -300,44 +299,95 @@
       visibility: hidden;
     }
   }
-
-
 </style>
 
+<div class="toolbar" role="banner">
+  <button
+    style="margin: 10px; background: none; border: none"
+    (click)="loadHome()"
+  >
+    <img width="110" src="/assets/cognizant.jpg" />
+  </button>
 
-      <div class="toolbar" role="banner">
-             <button  style="margin:10px;  background:none;border:none" (click)="loadHome()"><img
-                    width=110
+  <span>Flight Booking</span>
+  <div class="spacer"></div>
 
-                  src="/assets/cognizant.jpg"
-                  /></button>
-
-        <span >Flight Booking</span>
-          <div class="spacer"></div>
-
-         <div *ngIf="loggedIn==false">
-          <button class="btn btn-secondary" style="margin:10px;  background:none;border:none" data-toggle="modal" data-target="#loginForm">LOGIN</button>
-          <button class="btn btn-secondary" style="margin:10px;  background:none;border:none" data-toggle="modal" data-target="#form">
-          SIGN-UP  </button>
-        </div>
-           <div *ngIf="loggedIn==true">
-          <nav>
-                <button class="btn btn-secondary" style="margin:10px;  background:none;border:none"(click)="profile()" >PROFILE</button>
-          <button class="btn btn-secondary" style="margin:10px;  background:none;border:none" (click)="aircraft()">
-          ADMIN  </button>
-           <button class="btn btn-secondary" style="margin:10px;  background:none;border:none" (click)="logout()">
-          LOGOUT  </button>
-          </nav>
-          </div>
-      </div>
+  <div *ngIf="loggedIn == false">
+    <button
+      class="btn btn-secondary"
+      style="margin: 10px; background: none; border: none"
+      data-toggle="modal"
+      data-target="#loginForm"
+    >
+      LOGIN
+    </button>
+    <button
+      class="btn btn-secondary"
+      style="margin: 10px; background: none; border: none"
+      data-toggle="modal"
+      data-target="#form"
+    >
+      SIGN-UP
+    </button>
+  </div>
+  <div *ngIf="loggedIn == true">
+    <nav>
 
 
-<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <button *ngIf="userRole == 'ADMIN'"
+          class="btn btn-secondary"
+          style="margin: 10px; background: none; border: none"
+          (click)="aircraft()"
+        >
+          ADMIN
+        </button>
+
+
+        <button *ngIf="userRole == 'USER'"
+          class="btn btn-secondary"
+          style=" background: none; border: none"
+          (click)="showBooking()"
+        >
+          BOOKING
+        </button>
+
+      <button
+        class="btn btn-secondary"
+        style="margin: 10px; background: none; border: none"
+        (click)="profile()"
+      >
+        PROFILE
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        style="margin: 10px; background: none; border: none"
+        (click)="logout()"
+      >
+        LOGOUT
+      </button>
+    </nav>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="form"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header border-bottom-0">
         <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -345,102 +395,171 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="email1">Email address</label>
-            <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Your information is safe with us.</small>
+            <input
+              type="email"
+              class="form-control"
+              id="email1"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+            />
+            <small id="emailHelp" class="form-text text-muted"
+              >Your information is safe with us.</small
+            >
           </div>
           <div class="form-group">
             <label for="password1">Password</label>
-            <input type="password" class="form-control" id="password1" placeholder="Password">
+            <input
+              type="password"
+              class="form-control"
+              id="password1"
+              placeholder="Password"
+            />
           </div>
           <div class="form-group">
             <label for="password1">Confirm Password</label>
-            <input type="password" class="form-control" id="password2" placeholder="Confirm Password">
+            <input
+              type="password"
+              class="form-control"
+              id="password2"
+              placeholder="Confirm Password"
+            />
           </div>
         </div>
         <div class="modal-footer border-top-0 d-flex justify-content-center">
-          <button type="submit" class="btn btn-success" data-dismiss="modal" (click)="signup()">Submit</button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            data-dismiss="modal"
+            (click)="signup()"
+          >
+            Submit
+          </button>
         </div>
       </form>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="loginForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="loginForm"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header border-bottom-0">
         <h5 class="modal-title" id="exampleModalLabel">Login Account</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form  #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">>
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+        >
         <div class="modal-body">
           <div class="form-group">
             <label for="email1">Email address</label>
-            <input type="email" name="username" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Enter email" ngModel>
-
+            <input
+              type="email"
+              name="username"
+              class="form-control"
+              id="email1"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              ngModel
+            />
           </div>
           <div class="form-group">
             <label for="password1">Password</label>
-            <input type="password"name="pass" class="form-control" id="password1" placeholder="Password" ngModel>
+            <input
+              type="password"
+              name="pass"
+              class="form-control"
+              id="password1"
+              placeholder="Password"
+              ngModel
+            />
           </div>
-
         </div>
         <div class="modal-footer border-top-0 d-flex justify-content-center">
-          <button class="btn btn-primary"  #keywordsInput>Submit</button>
+          <button class="btn btn-primary" #keywordsInput>Submit</button>
         </div>
       </form>
     </div>
   </div>
 </div>
 <div class="content" role="main">
-      <table>
-
-        <tr>
-          <td>
-                    <img
-                    width=80
-                style="margin-right:1%;padding-bottom:80%"
-                  src="/assets/airplane.png"/>
-        </td>
-          <td>  <!-- Highlight Card -->
+  <table *ngIf="loadComponent == 'home'">
+    <tr>
+      <td>
+        <img
+          width="80"
+          style="margin-right: 1%; padding-bottom: 80%"
+          src="/assets/airplane.png"
+        />
+      </td>
+      <td>
+        <!-- Highlight Card -->
         <div class="card highlight-card card-small">
-
-
-
           <span>Book Your Flight</span>
 
-          <svg id="rocket-smoke" alt="Rocket Ship Smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632" viewBox="0 0 516.119 1083.632">
-            <path id="Path_40" data-name="Path 40" d="M644.6,141S143.02,215.537,147.049,870.207s342.774,201.755,342.774,201.755S404.659,847.213,388.815,762.2c-27.116-145.51-11.551-384.124,271.9-609.1C671.15,139.365,644.6,141,644.6,141Z" transform="translate(-147.025 -140.939)" fill="#f5f5f5"/>
+          <svg
+            id="rocket-smoke"
+            alt="Rocket Ship Smoke"
+            xmlns="http://www.w3.org/2000/svg"
+            width="516.119"
+            height="1083.632"
+            viewBox="0 0 516.119 1083.632"
+          >
+            <path
+              id="Path_40"
+              data-name="Path 40"
+              d="M644.6,141S143.02,215.537,147.049,870.207s342.774,201.755,342.774,201.755S404.659,847.213,388.815,762.2c-27.116-145.51-11.551-384.124,271.9-609.1C671.15,139.365,644.6,141,644.6,141Z"
+              transform="translate(-147.025 -140.939)"
+              fill="#f5f5f5"
+            />
           </svg>
-
-        </div></td>
-        </tr>
-      </table>
-
-
-
+        </div>
+      </td>
+    </tr>
+  </table>
 </div>
 
-      <div *ngIf="loadComponent!='aircraft' && loadComponent!='profile'  ">
+<div *ngIf="loadComponent != 'aircraft' && loadComponent != 'profile' && loadComponent !='ticket' && loadComponent !='book-ticket'">
+  <!-- Links -->
+  <div class="card-container">
+    <app-search></app-search>
+  </div>
 
-            <!-- Links -->
-            <div class="card-container">
-          <app-search></app-search>
-            </div>
-
-          <div class="card-container">
-          <app-list-flight></app-list-flight>
-            </div>
-      </div>
+  <div class="card-container">
+    <app-list-flight></app-list-flight>
+  </div>
+</div>
 
 <app-security></app-security>
-          <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
-            <path id="Path_39" data-name="Path 39" d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z" transform="translate(142.69 -634.312)" fill="#eee"/>
-          </svg>
-
-
+<svg
+  id="clouds"
+  alt="Gray Clouds Background"
+  xmlns="http://www.w3.org/2000/svg"
+  width="2611.084"
+  height="485.677"
+  viewBox="0 0 2611.084 485.677"
+>
+  <path
+    id="Path_39"
+    data-name="Path 39"
+    d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z"
+    transform="translate(142.69 -634.312)"
+    fill="#eee"
+  />
+</svg>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
@@ -449,7 +568,5 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
 
 <router-outlet></router-outlet>

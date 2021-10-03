@@ -1,1 +1,228 @@
-<p>ticket works!</p>
+<div class="cen">
+  <mat-tab-group>
+    <mat-tab label="Upcoming">
+      <br />
+      <mat-list *ngIf="listTicket.length">
+        <mat-card class="matcard" *ngFor="let ticket of listTicket">
+          <mat-card-title>{{ ticket.passangerName }}</mat-card-title>
+          <mat-card-subtitle>End</mat-card-subtitle>
+          <mat-card-content>
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  name="source"
+                  class="form-control"
+                  placeholder="source"
+                />
+              </div>
+
+              <div class="col">
+                <input
+                  type="text"
+                  name="destination"
+                  class="form-control"
+                  placeholder="destination"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="type"
+                  name="departure"
+                  onfocus="(this.type='datetime-local')"
+                  class="form-control"
+                  placeholder="Departure"
+                />
+              </div>
+              <div class="col">
+                <button class="btn btn-primary">Search</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  name="source"
+                  class="form-control"
+                  placeholder="source"
+                />
+              </div>
+
+              <div class="col">
+                <input
+                  type="text"
+                  name="destination"
+                  class="form-control"
+                  placeholder="destination"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="type"
+                  name="departure"
+                  onfocus="(this.type='datetime-local')"
+                  class="form-control"
+                  placeholder="Departure"
+                />
+              </div>
+              <div class="col">
+                <button class="btn btn-primary">Search</button>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-button class="button-blue">View Details</button>
+            <button mat-button class="button-red">Cancel</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-list>
+        <div *ngIf="listTicket.length==0">No Ticket found</div>
+    </mat-tab>
+    <mat-tab label="Past Journey">
+      <br />
+      <mat-list *ngIf="listTicket.length">
+        <mat-card class="matcard" *ngFor="let ticket of listTicket">
+          <mat-card-title>{{ ticket.passangerName }}</mat-card-title>
+          <mat-card-subtitle>End</mat-card-subtitle>
+          <mat-card-content>
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  name="source"
+                  class="form-control"
+                  placeholder="source"
+                />
+              </div>
+
+              <div class="col">
+                <input
+                  type="text"
+                  name="destination"
+                  class="form-control"
+                  placeholder="destination"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="type"
+                  name="departure"
+                  onfocus="(this.type='datetime-local')"
+                  class="form-control"
+                  placeholder="Departure"
+                />
+              </div>
+              <div class="col">
+                <button class="btn btn-primary">Search</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  name="source"
+                  class="form-control"
+                  placeholder="source"
+                />
+              </div>
+
+              <div class="col">
+                <input
+                  type="text"
+                  name="destination"
+                  class="form-control"
+                  placeholder="destination"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="type"
+                  name="departure"
+                  onfocus="(this.type='datetime-local')"
+                  class="form-control"
+                  placeholder="Departure"
+                />
+              </div>
+              <div class="col">
+                <button class="btn btn-primary">Search</button>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-button class="button-blue">View Details</button>
+            <button mat-button class="button-red">Cancel</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-list>
+       <div *ngIf="listTicket.length==0">No Ticket found</div>
+    </mat-tab>
+    <mat-tab label="Cancelled Flights">
+      <br />
+      <mat-list *ngIf="listTicket.length">
+        <mat-card class="matcard" *ngFor="let ticket of listTicket">
+          <mat-card-title>{{ ticket.passangerName }}</mat-card-title>
+          <mat-card-subtitle>End</mat-card-subtitle>
+          <mat-card-content>
+            <div class="row">
+              <div class="col">
+                <h2>Source</h2>
+              </div>
+
+              <div class="col">
+                <h2>Destination</h2>
+              </div>
+              <div class="col">
+                <input
+                  type="type"
+                  name="departure"
+                  onfocus="(this.type='datetime-local')"
+                  class="form-control"
+                  placeholder="Departure"
+                />
+              </div>
+              <div class="col">
+                <button class="btn btn-primary">Search</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  name="source"
+                  class="form-control"
+                  placeholder="source"
+                />
+              </div>
+
+              <div class="col">
+                <input
+                  type="text"
+                  name="destination"
+                  class="form-control"
+                  placeholder="destination"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="type"
+                  name="departure"
+                  onfocus="(this.type='datetime-local')"
+                  class="form-control"
+                  placeholder="Departure"
+                />
+              </div>
+              <div class="col">
+                <button class="btn btn-primary">Search</button>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-button class="button-blue">View Details</button>
+            <button mat-button class="button-red">Cancel</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-list>
+      <div *ngIf="listTicket.length==0">No Ticket found</div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

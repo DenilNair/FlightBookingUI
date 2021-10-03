@@ -1,0 +1,33 @@
+.cen{text-align: center;
+  align-items: center;
+  margin: auto;
+  width: 95%;
+  /*border: 3px solid green;*/
+  padding: 10px;
+}
+.button-blue{
+  background-color:  #0033a0;;
+  color: white;
+}
+.button-red{
+  background-color:  #811502;;
+  color: white;
+}
+.cancelled_flight{
+  background-color: rgb(255, 209, 209);
+}
+.button-past{
+  background-color: #ffffff56;
+}
+
+
+.matcard{
+
+  margin:10px;
+}
+.x-scroll-disabled {
+	overflow-x: hidden;
+}
+.x-scroll-disabled {
+	overflow-y: hidden;
+}
