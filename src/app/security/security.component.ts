@@ -20,7 +20,7 @@ export class SecurityComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public getAccessToken() {
+  public getAccessToken():Boolean {
     console.log('from getAccessToken');
     console.log(
       'from login method' +
@@ -63,7 +63,7 @@ export class SecurityComponent implements OnInit {
         return false;
       }
     );
-
+return true;
 
   }
 
@@ -92,7 +92,7 @@ export class SecurityComponent implements OnInit {
     console.log('token setted reponse ' + this.response);
   }
 
-  public fromLogin(username, pass) {
+  public fromLogin(username, pass):Boolean {
     console.log('from login method' + username + '  ' + pass);
     this.authRequest.userName = username;
     this.authRequest.password = pass;
