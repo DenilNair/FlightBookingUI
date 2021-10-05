@@ -5,6 +5,10 @@ import { SecurityComponent } from './security/security.component';
 import { ViewChild, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {ToastrService} from 'ngx-toastr';
+
+import { alertServies } from './services/alertService';
+
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,12 +24,13 @@ export class AppComponent {
   //
 
 
-  //@ViewChild('keywordsInput') keywordsInput: ElementRef;
+ //
 
   constructor(
     private httpCli: HttpClient,
     private router: Router,
-    private securityComponent: SecurityComponent,private _snackBar: MatSnackBar,private toastrService:ToastrService
+    private securityComponent: SecurityComponent,private _snackBar: MatSnackBar,private toastrService:ToastrService,
+    private alertt:alertServies
   ) {
 
 
@@ -119,7 +124,9 @@ userRole="GUEST";
 
 
 
-    this.securityComponent.fromLogin(formdata.username, formdata.pass);
+    let check=this.securityComponent.fromLogin(formdata.username, formdata.pass);
+    debugger;
+    if(check==true){
 
     if(!localStorage.getItem("role")){
       this.openSnackBar("Invalid user id/password");
@@ -145,6 +152,12 @@ userRole="GUEST";
       this.userRole="GUEST";
     }
   }
+  else{
+this.alertt.simpleAlert(' login ')
+
+  }
+
+  }
   signup() {
     console.log('signup');
     this.openSnackBar("Signup Successfull");
@@ -166,10 +179,12 @@ userRole="GUEST";
   loadHome() {
    // console.log('signup');
     this.router.navigate(
-      ['/'],{state:{usertype:"User"}}
+      ['/home'],{state:{usertype:"User"}}
 
    //   { queryParams: { loadComponent: 'home' } }
     );
+
+   // window.location.reload();
     // $('#loginForm').hide();
   }
 

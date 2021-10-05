@@ -5,6 +5,8 @@ import { flightDetailsServies } from '../services/flightDetailsServices';
 import { FlightService } from '../classes/flightDetails';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
+import { alertServies } from '../services/alertService';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -18,7 +20,9 @@ export class SearchComponent implements OnInit {
     private httpCli: HttpClient,
     private flightDetails: flightDetailsServies,
     private datepipe: DatePipe,
-    private router:Router
+    private router:Router,
+    private appComponent:AppComponent,
+    private alert:alertServies
   ) {}
 
 
@@ -81,6 +85,7 @@ export class SearchComponent implements OnInit {
         (error) => {
           this.errBlock = true;
           this.errorMsg = error.message;
+          this.alert.simpleAlert('Flight Service');
           console.log('accessWithToken error found' + this.errorMsg);
         }
       );
@@ -212,4 +217,10 @@ console.log("login check ",this.showLogin);
    this.display='none';
    this.displaySignup='block';
  }
+
+ login(data){
+   console.log("user data",data);
+   this.appComponent.login(data);
+ }
+
 }

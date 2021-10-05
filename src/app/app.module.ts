@@ -12,6 +12,7 @@ import { ReactiveFormsModule} from '@angular/forms';
 //import servies
 import { flightDetailsServies } from './services/flightDetailsServices';
 import { aircraftDetailsServies } from './services/aircraftDetailsServices';
+import { alertServies } from './services/alertService';
 import { TicketDetails } from './classes/TicketDetails';
 import { AircraftComponent } from './aircraft/aircraft.component';
 import { TicketComponent } from './ticket/ticket.component';
@@ -47,7 +48,7 @@ import { BookTicketComponent } from './book-ticket/book-ticket.component';
     BrowserAnimationsModule,
     AngularMaterialModule, ToastrModule.forRoot()
   ],
-  providers: [flightDetailsServies,aircraftDetailsServies,SecurityComponent,DatePipe,TicketDetails],
+  providers: [flightDetailsServies,aircraftDetailsServies,SecurityComponent,DatePipe,TicketDetails,alertServies],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

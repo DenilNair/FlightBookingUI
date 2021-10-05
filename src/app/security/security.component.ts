@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { JwtClientService } from '../services/jwt-client.service';
 
 @Component({
@@ -37,7 +37,7 @@ export class SecurityComponent implements OnInit {
 
     resp.subscribe(
       (data) => {
-        debugger
+
         //first time token added to local storage
         console.log('token value --- ' + data);
 
@@ -53,11 +53,17 @@ export class SecurityComponent implements OnInit {
        }
       },
       (error) => {
+        console.log('loginn error' + this.errorMsg);
+        //this.alertt.simpleAlert('Security');
+
+
         this.errBlock = true;
         this.errorMsg = error.message;
         console.log('getAccessToken error found' + this.errorMsg);
+        return false;
       }
     );
+
 
   }
 
@@ -90,6 +96,6 @@ export class SecurityComponent implements OnInit {
     console.log('from login method' + username + '  ' + pass);
     this.authRequest.userName = username;
     this.authRequest.password = pass;
-    this.getAccessToken();
+   return this.getAccessToken();
   }
 }
