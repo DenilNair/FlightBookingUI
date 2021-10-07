@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core'
+import {Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2/dist/sweetalert2.all.js';
 
@@ -12,6 +12,22 @@ export class alertServies{
 
   successAlertNotification(data){
     Swal.fire(data)
+  }
+  successAlertTicketBooked(){
+
+    Swal.fire("Ticket Booked", "Congratulations. Have a Save and Happy Journey", "success");
+  }
+  successAlertAdmin(data){
+
+    Swal.fire(data, "jgjh", "success");
+  }
+  errorAlert(data){
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: data,
+     //footer: '<a href="">Why do I have this issue?</a>'
+    })
   }
 
   alertConfirmation(){

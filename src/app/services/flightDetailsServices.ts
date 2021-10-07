@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+
 @Injectable()
 export class flightDetailsServies{
 
@@ -12,14 +14,17 @@ export class flightDetailsServies{
   }
 
 
-  public postFlights(request):Observable<any>{
-console.log("from flight insert");
+  public postFlights(request):Observable<String>{
 
-const headers = { 'userrole': 'ADMIN', 'Content-Type': 'application/json' };
 
-  return  this.httpClient.post("http://localhost:9097/flightservice/flight/add",request,{headers});
+const headers = { 'userrole': 'ADMIN', 'Content-Type': 'application/json' ,responseType: 'text' as const};
+debugger
+  return  this.httpClient.post<String>("http://localhost:9097/flightservice/flight/add",request,{headers}). pipe(map(res => {
+    return res;
+}));
   }
   handleErrorrror(err){
+    debugger
     return throwError(err);
   }
 }

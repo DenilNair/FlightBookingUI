@@ -4,107 +4,160 @@
     mat-fab
     color="primary"
     aria-label="Example icon button with a delete icon"
-    (click)="addPass()"
+    (click)="addItem()"
   >
     <mat-icon>person_add</mat-icon>
   </button>
 </div>
-<div class ="air-dtl">
-
-<h2 class="airline">American Airline</h2>
-<h3 class="aircraft">BA-340 | Boeing 747</h3></div>
-
+<div class="air-dtl">
+  <h2 class="airline">American Airline</h2>
+  <h3 class="aircraft">BA-340 | Boeing 747</h3>
+</div>
 
 <table class="table table-borderless">
-  <thead>
-
-  </thead>
+  <thead></thead>
   <tbody>
     <tr>
-
-    <td class="flight-col">{{flightdetails.scheduledStartTime}}</td>
-      <td class="time-col"><tr><img src="https://img.icons8.com/color/96/000000/arrow--v1.png"/></tr><tr>time</tr></td>
-      <td class="flight-col">{{flightdetails.scheduledEndTime}}</td>
-      <td class="flight-col">{{flightdetails.source}}</td>
-      <td class="flight-col"><img src="https://img.icons8.com/color/96/000000/airplane-mode-on--v1.png"/></td>
-      <td class="flight-col">{{flightdetails.destination}}</td>
+      <td class="flight-col">{{ flightdetails.scheduledStartTime }}</td>
+      <td class="time-col">
+        <tr>
+          <img src="https://img.icons8.com/color/96/000000/arrow--v1.png" />
+        </tr>
+        <tr>
+          {{timediff}}
+        </tr>
+      </td>
+      <td class="flight-col">{{ flightdetails.scheduledEndTime }}</td>
+      <td class="flight-col">{{ flightdetails.source }}</td>
+      <td class="flight-col">
+        <img
+          src="https://img.icons8.com/color/96/000000/airplane-mode-on--v1.png"
+        />
+      </td>
+      <td class="flight-col">{{ flightdetails.destination }}</td>
     </tr>
-
-
   </tbody>
 </table>
 
 
-
-
-
-
-<mat-grid-list cols="4" rowHeight="100px">
-
-  <mat-grid-tile
-    *ngFor="let tile of tiles"
-    [colspan]="tile.cols"
-    [rowspan]="tile.rows"
-    [style.background]="tile.color"
+<div class="booking-form" [formGroup]="orderForm">
+  <div
+    formArrayName="items"
+    *ngFor="let item of getControls(); let i = index"
   >
-   <div *ngIf="tile.color=='#bababa'">
-  <h1>Per Ticket Charge  = {{TicketPrice}}</h1>
-   <h1>Total Passanger = {{totalPassanger}}</h1>
-    <h1> Tax = 100 per Ticket</h1>
-    <h1>Total Fare =<b> {{totalFare+100*totalPassanger}}</b></h1>
+    <div [formGroupName]="i">
+
+      <div class="row">
+        <div class="col-2">
+          <label> Passanger Name</label>
+        </div>
+        <div class="col-4">
+          <input
+            type="text"
+            formControlName="name"
+            class="form-control"
+            placeholder=" Name"
+            ngModel
+          />
+        </div>
+        <div class="col-2">
+          <label> Age</label>
+        </div>
+        <div class="col-4">
+          <input
+            type="text"
+            formControlName="age"
+            class="form-control"
+            placeholder=" Age"
+            ngModel
+          />
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-2">
+          <label> Gender</label>
+        </div>
+        <div class="col-4">
+          <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  formControlName="gender"
+                  id="exampleRadios1"
+                  value="male"
+                />
+                <label class="form-check-label" for="exampleRadios1">
+                  Male
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  formControlName="gender"
+                  id="exampleRadios2"
+                  value="female"
+                />
+                <label class="form-check-label" for="exampleRadios2">
+                  Female
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  formControlName="gender"
+                  id="gender"
+                  value="others"
+                />
+                <label class="form-check-label" for="exampleRadios2">
+                  Others
+                </label>
+              </div>
+        </div>
+            <div class="col-2">
+          <label> Meal</label>
+        </div>
+        <div class="col-4">
+          <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  formControlName="meal"
+                  id="exampleRadios1"
+                  value="veg"
+                />
+                <label class="form-check-label" for="exampleRadios1">
+                  Veg
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  formControlName="meal"
+                  id="exampleRadios2"
+                  value="non-veg"
+                />
+                <label class="form-check-label" for="exampleRadios2">
+                  Non-Veg
+                </label>
+              </div>
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+      </div>
+    </div>
+  </div>
 </div>
- <div *ngIf="tile.color!='#bababa'">
-
-<table class="table table-borderless">
-  <thead>
-
-  </thead>
-  <tbody>
-    <tr>
-
-    <td class="">Passenger Name</td>
-      <td class=""> <input
-                type="text"
-                name="companyName"
-                class="form-control"
-                placeholder=" Name"
-                ngModel
-              /></td>
-         <td class="">Passenger Age</td>
-      <td class=""> <input
-                type="text"
-                name="companyName"
-                class="form-control"
-                placeholder=" Age"
-                ngModel
-              /></td>
-
-    </tr>
-  <tr>
-
-    <td class="">Meal Preference</td>
-      <td class=""><div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" (click)="myFunction()" #myDiv>
-  <label class="form-check-label" for="inlineCheckbox1">1</label>
+<div class="fixed-bottom  submit-button">
+<button class="btn btn-success submit-button" (click)="BookTicket()">Book Ticket</button>
 </div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" [ngStyle]="{'display':display}" checked>
-  <label class="form-check-label" for="exampleRadios1">
-    Default radio
-  </label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" [ngStyle]="{'display':display}" value="option2">
-  <label class="form-check-label" for="exampleRadios2">
-    Second default radio
-  </label>
-</div>
-</td>
-
-    </tr>
-
-  </tbody>
-</table>
- </div>
-  </mat-grid-tile>
-</mat-grid-list>

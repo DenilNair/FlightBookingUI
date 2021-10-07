@@ -60,3 +60,29 @@ text-align: center;
 .air-dtl{
   margin-left: 5%;
 }
+.receipt{
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3vw;
+}
+.receipt-under{
+  font-family: 'Orbitron', sans-serif;
+
+
+}
+.align-tabel{
+
+  align-items: start;
+  text-align: start;
+}
+.cont{
+  padding:0px;
+  margin: 0px;
+  width: 100%;
+  height: 50%;
+}
+.booking-form{
+  width: 80%; margin:0 auto;
+}
+.submit-button{
+  margin:0 auto;
+}

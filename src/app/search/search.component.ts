@@ -199,11 +199,16 @@ export class SearchComponent implements OnInit {
     console.log("bookticket bookticket bookticket",data.flightNo);
     debugger
     if(!localStorage.getItem('token')){
-      this.display='block';
+      this.alert.successAlertNotification("Login as User to Book Ticket .");
+
 console.log("login check ",this.showLogin);
 
   }else{
-    this.appComponent.redirectToBookingPage(data);
+    if(localStorage.getItem('role')=='"ADMIN"'){
+      this.alert.successAlertNotification("Login as User to Book Ticket . Admin is not allowed to book");
+    }
+    else{ this.appComponent.redirectToBookingPage(data);}
+
    // this.router.navigate(['/book-ticket'])
 
   }

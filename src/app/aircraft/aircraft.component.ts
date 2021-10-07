@@ -10,6 +10,9 @@ import { NotificationService } from '../services/notification.service';
 
 import { title } from 'process';
 import { flightDetailsServies } from '../services/flightDetailsServices';
+
+import { DatePipe } from '@angular/common';
+import { alertServies } from '../services/alertService';
 @Component({
   selector: 'app-aircraft',
   templateUrl: './aircraft.component.html',
@@ -21,7 +24,9 @@ export class AircraftComponent implements OnInit {
     private httpCli: HttpClient,
     private aircraftService: aircraftDetailsServies,
     private _snackBar: MatSnackBar,
-    private flightService: flightDetailsServies
+    private flightService: flightDetailsServies,
+    private datePipe:DatePipe,
+    private alert:alertServies
   ) {}
 
   listAircraft: AircraftService[];
@@ -54,6 +59,7 @@ export class AircraftComponent implements OnInit {
         } else {
           this.noAirCraft = false;
         }
+        this.errBlock=false;
       },
       (error) => {
         this.errBlock = true;
@@ -73,23 +79,33 @@ export class AircraftComponent implements OnInit {
   }
 
   ScheduleFlight(temp) {
+    //let letsContinue = false;
     console.log('toaster', temp);
+temp.scheduledStartTime=this.changeDateFormat(temp.scheduledStartTime);
+temp.scheduledEndTime=this.changeDateFormat(temp.scheduledEndTime);
 
-    let response = this.flightService.postFlights(temp);
-
-    response.subscribe(
+debugger
+    this.flightService.postFlights(temp).subscribe(
       (data) => {
+        debugger
         //first time token added to local storage
-        console.log('token value --- ' + data);
+        console.log('flight sceduled --- ' + data);
+        this.alert.  successAlertTicketBooked();
+       // letsContinue = true;
       },
       (error) => {
         this.errBlock = true;
         this.errorMsg = error.message;
+       // letsContinue = true;
         console.log(
-          "Eception caugth can't schedule a  flight " + this.errorMsg
+          "Exception caugth can't schedule a  flight " + this.errorMsg
         );
+        //this.alert.  successAlertTicketBooked();
       }
+
     );
+
+    //this.alert.  successAlertTicketBooked();
     //this.toaster.success("message", "title");
     //this.notificationService.showSuccess("flight scheduled ","successfull");
     //  this.openSnackBar("New Flight Scheduled");
@@ -111,5 +127,13 @@ export class AircraftComponent implements OnInit {
         console.log("Eception caugth can't add new  aircraft " + this.errorMsg);
       }
     );
+  }
+
+  public changeDateFormat(dateval) {
+    let date = new Date(dateval);
+    let latest_date = this.datePipe.transform(date, 'dd-MMM-yyyy HH:mm:ss');
+    // console.log("date = ",latest_date);
+    //console.log("date in string format ",latest_date.toString())
+    return latest_date.toString();
   }
 }

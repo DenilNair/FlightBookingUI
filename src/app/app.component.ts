@@ -54,9 +54,11 @@ export class AppComponent {
 else if (window.location.pathname == '/book-ticket') {
       this.loadComponent = 'book-ticket';
     }
-
+    else if (window.location.pathname == '/home') {
+      this.loadComponent = 'home';
+    }
     if (localStorage.getItem('token')) {
-      let tokenChekc = localStorage.getItem('token');
+      let tokenChekc = localStorage.getItem('"token"');
       this.securityComponent.accessWithToken(tokenChekc);
       this.loggedIn = true;
   this.token_temp=localStorage.getItem("role");
@@ -71,11 +73,7 @@ else if (window.location.pathname == '/book-ticket') {
         this.userRole="GUEST";
       }
 
-      console.log( localStorage.getItem('token'));
 
-      console.log( localStorage.getItem('role'));
-
-      console.log( "USER");
     }
   }
   ngOnInit() {
@@ -179,7 +177,7 @@ this.alertt.simpleAlert(' login ')
   loadHome() {
    // console.log('signup');
     this.router.navigate(
-      ['/home'],{state:{usertype:"User"}}
+      ['/'],{state:{usertype:"User"}}
 
    //   { queryParams: { loadComponent: 'home' } }
     );
