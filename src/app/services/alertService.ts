@@ -10,8 +10,8 @@ export class alertServies{
     Swal.fire('Backend '+data+ 'is down. Please Contact Administrator');
   }
 
-  successAlertNotification(){
-    Swal.fire('Hi', 'Congrats! operation successfull', 'success')
+  successAlertNotification(data){
+    Swal.fire(data)
   }
 
   alertConfirmation(){

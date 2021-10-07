@@ -213,4 +213,11 @@ this.alertt.simpleAlert(' login ')
     this.router.navigate(['/ticket-component'])
     this.loadComponent = 'ticket';
   }
+
+
+
+  redirectToBookingPage(data){
+    this.loadComponent='book-ticket';
+    this.router.navigate(['/book-ticket'],{state:{flight:data}})
+  }
 }

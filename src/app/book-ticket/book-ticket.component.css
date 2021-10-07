@@ -6,3 +6,57 @@ mat-grid-tile {
 }
 
 .example-button-container{float: right;}
+
+
+.box-col{
+  align-items: flex-start;
+  width: 100%;
+}
+.box-row{
+  width: 100%;
+  margin-top: 1%;
+}
+.flight-details{
+  font-size: xx-large;
+  font-weight: bold;
+}
+.aircraft{
+  color: rgb(161, 161, 161);
+}
+
+.airline{
+  margin-bottom: 0%;
+}
+
+.tab{
+  align-items: center;
+  text-align: start;
+
+}
+.flight-col{
+  margin: auto;
+text-align: center;
+
+  padding: 10px;
+  font-weight: bold;
+  font-size: 4vw;
+ vertical-align: middle;
+}
+.time-col{
+  font-size: 2vw;
+  color: rgb(161, 161, 161);
+ vertical-align: middle;
+
+}
+
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
+}
+.air-dtl{
+  margin-left: 5%;
+}

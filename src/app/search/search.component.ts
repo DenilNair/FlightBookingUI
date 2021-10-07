@@ -203,7 +203,8 @@ export class SearchComponent implements OnInit {
 console.log("login check ",this.showLogin);
 
   }else{
-    this.router.navigate(['/book-ticket'])
+    this.appComponent.redirectToBookingPage(data);
+   // this.router.navigate(['/book-ticket'])
 
   }
   }
