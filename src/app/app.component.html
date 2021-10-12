@@ -325,31 +325,30 @@
       class="btn btn-secondary"
       style="margin: 10px; background: none; border: none"
       data-toggle="modal"
-      data-target="#form"
+      data-target="#signupform"
     >
       SIGN-UP
     </button>
   </div>
   <div *ngIf="loggedIn == true">
     <nav>
+      <button
+        *ngIf="userRole == 'ADMIN'"
+        class="btn btn-secondary"
+        style="margin: 10px; background: none; border: none"
+        (click)="aircraft()"
+      >
+        ADMIN
+      </button>
 
-
-        <button *ngIf="userRole == 'ADMIN'"
-          class="btn btn-secondary"
-          style="margin: 10px; background: none; border: none"
-          (click)="aircraft()"
-        >
-          ADMIN
-        </button>
-
-
-        <button *ngIf="userRole == 'USER'"
-          class="btn btn-secondary"
-          style=" background: none; border: none"
-          (click)="showBooking()"
-        >
-          BOOKING
-        </button>
+      <button
+        *ngIf="userRole == 'USER'"
+        class="btn btn-secondary"
+        style="background: none; border: none"
+        (click)="showBooking()"
+      >
+        BOOKING
+      </button>
 
       <button
         class="btn btn-secondary"
@@ -372,17 +371,16 @@
 
 <div
   class="modal fade"
-  id="form"
+  id="signupform"
   tabindex="-1"
   role="dialog"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog modal-dialog-centered" role="document">
+   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header border-bottom-0">
-        <h4 class="modal-title den" id="exampleModalLabel" >Create Account</h4>
-
+        <h5 class="modal-title" id="exampleModalLabel">Sign up</h5>
         <button
           type="button"
           class="close"
@@ -391,63 +389,60 @@
         >
           <span aria-hidden="true">&times;</span>
         </button>
-
       </div>
-      <small id="emailHelp"
-              >Your information is safe with us.</small
-            >
-      <form>
+      <small> Your data will be secured with us.</small>
+      <form #signupform="ngForm" (ngSubmit)="signup(signupform.value)">
         <div class="modal-body">
           <div class="form-group">
-            <label for="email1">Email Email</label>
+            <label for="email1">Email address</label>
             <input
               type="email"
+              name="email"
               class="form-control"
               id="email1"
               aria-describedby="emailHelp"
-              placeholder="Enter email" required
+              placeholder="Enter email"
+              ngModel
             />
-
-             <div class="form-group">
-            <label for="name1"> User Name</label>
+          </div>
+           <div class="form-group">
+            <label for="email1">User Name</label>
             <input
-              type="text"
+              type="email"
+              name="username"
               class="form-control"
-              id="name1"
+              id="email2"
               aria-describedby="emailHelp"
-              placeholder="Enter your user name"
+              placeholder="Enter email"
+              ngModel
             />
+          </div>
 
-          </div>
-          </div>
           <div class="form-group">
             <label for="password1">Password</label>
             <input
               type="password"
+              name="password"
               class="form-control"
               id="password1"
               placeholder="Password"
+              ngModel
             />
           </div>
-          <div class="form-group">
-            <label for="password1">Confirm Password</label>
+               <div class="form-group">
+            <label for="password1">Re-enterPassword</label>
             <input
               type="password"
+              name="reenterpass"
               class="form-control"
               id="password2"
-              placeholder="Confirm Password"
+              placeholder="Password"
+              ngModel
             />
           </div>
         </div>
         <div class="modal-footer border-top-0 d-flex justify-content-center">
-          <button
-            type="submit"
-            class="btn btn-success"
-            data-dismiss="modal"
-            (click)="signup()"
-          >
-            Submit
-          </button>
+          <button class="btn btn-primary" #keywordsInput>Submit</button>
         </div>
       </form>
     </div>
@@ -476,7 +471,6 @@
         </button>
       </div>
       <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
-
         <div class="modal-body">
           <div class="form-group">
             <label for="email1">Email address</label>
@@ -546,7 +540,15 @@
   </table>
 </div>
 
-<div *ngIf="loadComponent != 'aircraft' && loadComponent != 'profile' && loadComponent !='ticket' && loadComponent !='book-ticket'">
+<div
+  *ngIf="
+    loadComponent != 'aircraft' &&
+    loadComponent != 'profile' &&
+    loadComponent != 'ticket' &&
+    loadComponent != 'book-ticket' &&
+    loadComponent!='ticket-details'
+  "
+>
   <!-- Links -->
   <div class="card-container">
     <app-search></app-search>

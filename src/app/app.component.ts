@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {  Router } from '@angular/router';
 import { SecurityComponent } from './security/security.component';
-import { ViewChild, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {ToastrService} from 'ngx-toastr';
 
 import { alertServies } from './services/alertService';
-
-import Swal from 'sweetalert2/dist/sweetalert2.js';
+import * as airportdata from './data_file.json';
+import { AirportListService } from './services/airportListServices';
+import { SearchComponent } from './search/search.component';
+import { LoadComponentService } from './services/loadComponentService';
+import { JwtClientService } from './services/jwt-client.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,41 +24,76 @@ export class AppComponent {
   durationInSeconds = 5;
   //to close login model form
   //
+  @ViewChild(SearchComponent) child: SearchComponent;
 
 
- //
 
   constructor(
     private httpCli: HttpClient,
     private router: Router,
     private securityComponent: SecurityComponent,private _snackBar: MatSnackBar,private toastrService:ToastrService,
-    private alertt:alertServies
+    private alertt:alertServies,
+    private airportListService:AirportListService,private loadCompo:LoadComponentService,
+    private jwtClient:JwtClientService
+
   ) {
+    debugger
 
+    if(localStorage.getItem('token')){
 
-    //to initialize first time
+      let token=localStorage.getItem('token');
+      token=token.substring(1,token.length-1);
+      this.jwtClient.welcome(token).subscribe(
+        (data) => {
+          debugger
+          console.log(data);
+        },
+        (error) => {
+          debugger;
+          console.log('accessWithToken error found' ,error);
+          localStorage.removeItem('token');
+          localStorage.removeItem('id');
+          localStorage.removeItem('role')
+
+        }
+      );
+    }
+this.airportListService.setAirportList(airportdata);
+
 
     debugger;
     console.log('this', window.location.pathname);
 
-    this.loadComponent = 'home';
+    this.loadComponent = this.loadCompo.getLoadComponent();
     if (window.location.pathname == '/') {
-      this.loadComponent = 'home';
+
+      this.loadCompo.setLoadComponent('home');
+
     } else if (window.location.pathname == '/aircraft-component') {
-      this.loadComponent = 'aircraft';
+
+      this.loadCompo.setLoadComponent('aircraft');
+
+
     } else if (window.location.pathname == '/profile-component') {
-      this.loadComponent = 'profile';
+
+      this.loadCompo.setLoadComponent('profile');
+
     }
     else if (window.location.pathname == '/ticket-component') {
-      this.loadComponent = 'ticket';
+      this.loadCompo.setLoadComponent('ticket');
+
     }
 
 else if (window.location.pathname == '/book-ticket') {
-      this.loadComponent = 'book-ticket';
+
+  this.loadCompo.setLoadComponent('book-ticket')
+
     }
     else if (window.location.pathname == '/home') {
-      this.loadComponent = 'home';
+      this.loadCompo.setLoadComponent('home')
+
     }
+    this.loadComponent = this.loadCompo.getLoadComponent()
     if (localStorage.getItem('token')) {
       let tokenChekc = localStorage.getItem('"token"');
       this.securityComponent.accessWithToken(tokenChekc);
@@ -78,6 +115,9 @@ else if (window.location.pathname == '/book-ticket') {
   }
   ngOnInit() {
     debugger;
+
+    //to load seach component data by default
+    this.child.SearchFlights2();
     let obs = this.httpCli.get('http://localhost:9097/flightservice/all', {
       responseType: 'text',
     });
@@ -113,7 +153,7 @@ userRole="GUEST";
 
   //for login
   login(formdata) {
-
+debugger
     console.log('login form data submitted');
     // this.keywordsInput.nativeElement.click();
 
@@ -156,9 +196,18 @@ this.alertt.simpleAlert(' login ')
   }
 
   }
-  signup() {
+  signup(data) {
+    debugger
     console.log('signup');
-    this.openSnackBar("Signup Successfull");
+    if(data.password!=data.confirmpass){
+      this.alertt.errorAlert("Password mistmatch");
+    }
+    else{
+      this.securityComponent.signup(data.email,data.username,data.password)
+      this.openSnackBar("Signup Successfull");
+    //  window.location.reload();
+  }
+
     //this.router.navigate(['/second-component'],
 
     //{queryParams: {}});
@@ -166,11 +215,13 @@ this.alertt.simpleAlert(' login ')
   }
   profile() {
     this.router.navigate(['/profile-component']);
+    this.loadCompo.setLoadComponent('profile');
     this.loadComponent = 'profile';
   }
 
   aircraft() {
     this.router.navigate(['/aircraft-component']);
+    this.loadCompo.setLoadComponent('aircraft');
     this.loadComponent = 'aircraft';
   }
 
@@ -208,14 +259,29 @@ this.alertt.simpleAlert(' login ')
   }
 
   showBooking(){
-    this.router.navigate(['/ticket-component'])
+    this.router.navigate(['/ticket-component']);
+    this.loadCompo.setLoadComponent('ticket')
     this.loadComponent = 'ticket';
   }
 
 
 
   redirectToBookingPage(data){
+    this.loadCompo.setLoadComponent('book-ticket');
     this.loadComponent='book-ticket';
     this.router.navigate(['/book-ticket'],{state:{flight:data}})
   }
+
+  redirectToBookingDetailsPage(data){
+    this.loadCompo.setLoadComponent('ticket-details');
+    this.loadComponent='ticket-details';
+    this.router.navigate(['/ticket-details'],{state:{bookingid:data}})
+  }
+
+
+
+
+
+
 }
+

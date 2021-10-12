@@ -1,201 +1,199 @@
 <div class="cen">
-
-<div *ngIf="errBlock == true">
-  <h2>unable to connect to Aircraft Service Please contact administrator</h2>
-</div>
-<table>
-  <div class="row">
-    <div class="col-4 ">
-      <div id="container" class="addAircraft addcol">
-        <h2>Add a new Aircraft</h2>
-        <form
-          #addNewAirport="ngForm"
-          (ngSubmit)="AddAircraft(addNewAirport.value)"
-        >
-          <div class="row">
-            <div class="col">
-              <input
-                type="text"
-                name="companyName"
-                class="form-control"
-                placeholder="Company Name"
-                ngModel
-              />
-            </div>
-            <div class="col">
-              <input
-                type="text"
-                name="aircraftCode"
-                class="form-control"
-                placeholder="Aircraft Code"
-                ngModel
-              />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <input
-                type="text"
-                name="aircraftType"
-                class="form-control"
-                placeholder="Aircraft Type"
-                ngModel
-              />
-            </div>
-            <div class="col">
-              <input
-                type="text"
-                name="sittingCapacity"
-                class="form-control"
-                placeholder="Sitting Capacity"
-                ngModel
-              />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <button class="btn btn-success">Add</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="col-8 ">
-      <div id="container" class="addAircraft addcol">
-        <h2>Schedule a new Flight</h2>
-        <form
-          #addNewFlight="ngForm"
-          (ngSubmit)="ScheduleFlight(addNewFlight.value)"
-        >
-          <div class="row">
-            <div class="col">
-              <input
-                type="text"
-                name="source"
-                class="form-control"
-                placeholder="Source"
-                ngModel
-              />
-            </div>
-            <div class="col">
-              <input
-                type="text"
-                name="destination"
-                class="form-control"
-                placeholder="Destination"
-                ngModel
-              />
-            </div>
-            <div class="col">
-              <input
-                type="text"
-                name="airline"
-                class="form-control"
-                placeholder="Airline"
-                ngModel
-              />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <input
-                type="text"
-                name="flightNo"
-                class="form-control"
-                placeholder="Aircraft Code"
-                ngModel
-              />
-            </div>
-            <div class="col">
-              <input
-                type="text"
-                name="scheduledStartTime"
-                class="form-control"
-                placeholder="Start Date"
-                 onfocus="(this.type='datetime-local')"
-                ngModel
-              />
-            </div>
-            <div class="col">
-              <input
-type="text"
-                name="scheduledEndTime"
-                class="form-control"
-
-                 placeholder="End Date"
-                 onfocus="(this.type='datetime-local')"
-                ngModel
-              />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <button class="btn btn-success">Add</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+  <div *ngIf="errBlock == true">
+    <h2>unable to connect to Aircraft Service Please contact administrator</h2>
   </div>
-</table>
-
-<label>
-  <h2 class="textbox">Search Aircraft</h2>
-  <label>
-    <form #search="ngForm" (ngSubmit)="SearchAircraft(search.value)">
-      <div class="row">
-        <div class="col searchbuttonCol">
-          <input
-            type="text"
-            name="companyName"
-            class="form-control"
-            placeholder="Company Name"
-            ngModel
-          />
-        </div>
-        <div class="col searchbuttonCol">
-          <input
-            type="text"
-            name="aircraftCode"
-            class="form-control"
-            placeholder="Aircraft Code"
-            ngModel
-          />
-        </div>
-        <div class="col searchbuttonCol">
-          <input
-            type="text"
-            name="sittingCapacity"
-            class="form-control "
-            placeholder="Sitting Capacity"
-            ngModel
-          />
-        </div>
-        <div class="col-2 searchbuttonCol">
-          <button class="btn btn-primary">Search</button>
+  <table>
+    <div class="row">
+      <div class="col-6">
+        <div id="container" class="addAircraft addcol">
+          <h2>Add a new Aircraft</h2>
+          <form
+            #addNewAirport="ngForm"
+            (ngSubmit)="AddAircraft(addNewAirport.value)"
+          >
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  name="companyName"
+                  class="form-control"
+                  placeholder="Company Name"
+                  ngModel
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  name="aircraftCode"
+                  class="form-control"
+                  placeholder="Aircraft Code"
+                  ngModel
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  name="aircraftType"
+                  class="form-control"
+                  placeholder="Aircraft Type"
+                  ngModel
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  name="sittingCapacity"
+                  class="form-control"
+                  placeholder="Sitting Capacity"
+                  ngModel
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-success">Add</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-    </form>
-    <div *ngIf="listAircraft.length">
-      <table>
-        <tr>
-          <th class="deni">Company Name</th>
-          <th class="deni">Aircraft type</th>
-          <th class="deni">Aircraft Code</th>
-          <th class="deni">Sitting Capacity</th>
-        </tr>
+      <div class="col-6">
+        <div id="container" class="addAircraft addcol">
+          <h2>Schedule a new Flight</h2>
+          <form
+            #addNewFlight="ngForm"
+            (ngSubmit)="ScheduleFlight(addNewFlight.value)"
+          >
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  name="source"
+                  class="form-control"
+                  placeholder="Source"
+                  ngModel
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  name="destination"
+                  class="form-control"
+                  placeholder="Destination"
+                  ngModel
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  name="airline"
+                  class="form-control"
+                  placeholder="Airline"
+                  ngModel
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  name="flightNo"
+                  class="form-control"
+                  placeholder="Aircraft Code"
+                  ngModel
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  name="scheduledStartTime"
+                  class="form-control"
+                  placeholder="Start Date"
+                  onfocus="(this.type='datetime-local')"
+                  ngModel
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  name="scheduledEndTime"
+                  class="form-control"
+                  placeholder="End Date"
+                  onfocus="(this.type='datetime-local')"
+                  ngModel
+                />
+              </div>
+            </div>
 
-        <tr *ngFor="let flight of listAircraft">
-          <td class="deni">{{ flight.companyName }}</td>
-          <td class="deni">{{ flight.aircraftType }}</td>
-          <td class="deni">{{ flight.aircraftCode }}</td>
-          <td class="deni">{{ flight.sittingCapacity }}</td>
-        </tr>
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-success">Add</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
 
-        <div *ngIf="noAirCraft"><p>No Flight found</p></div>
-      </table>
-    </div></label
-  ></label
->
+    </div>
+  </table>
+  <table>
+    <div class="row">
+      <div class="col">
+        <label>
+          <h2 class="textbox">Search Aircraft</h2>
+          <label>
+            <form #search="ngForm" (ngSubmit)="SearchAircraft(search.value)">
+              <div class="row">
+                <div class="col searchbuttonCol">
+                  <input
+                    type="text"
+                    name="companyName"
+                    class="form-control"
+                    placeholder="Company Name"
+                    ngModel
+                  />
+                </div>
+                <div class="col searchbuttonCol">
+                  <input
+                    type="text"
+                    name="aircraftCode"
+                    class="form-control"
+                    placeholder="Aircraft Code"
+                    ngModel
+                  />
+                </div>
+
+                <div class="col-2 searchbuttonCol">
+                  <button class="btn btn-primary">Search</button>
+                </div>
+              </div>
+            </form>
+            <div *ngIf="listAircraft.length">
+              <table>
+                <tr>
+                  <th class="deni">Company Name</th>
+                  <th class="deni">Aircraft type</th>
+                  <th class="deni">Aircraft Code</th>
+                  <th class="deni">Sitting Capacity</th>
+                </tr>
+
+                <tr *ngFor="let flight of listAircraft">
+                  <td class="deni">{{ flight.companyName }}</td>
+                  <td class="deni">{{ flight.aircraftType }}</td>
+                  <td class="deni">{{ flight.aircraftCode }}</td>
+                  <td class="deni">{{ flight.sittingCapacity }}</td>
+                </tr>
+
+                <div *ngIf="noAirCraft"><p>No Flight found</p></div>
+              </table>
+            </div></label
+          ></label
+        >
+      </div>
+
+
+    </div>
+  </table>
 </div>

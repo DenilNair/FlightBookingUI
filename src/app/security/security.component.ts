@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { JwtClientService } from '../services/jwt-client.service';
-
+import { UserDetails } from '../classes/UserDetails';
+import { alertServies } from '../services/alertService';
 @Component({
   selector: 'app-security',
   templateUrl: './security.component.html',
@@ -16,7 +17,7 @@ export class SecurityComponent implements OnInit {
   tokengot = false;
   errBlock = false;
   errorMsg = '';
-  constructor(private service: JwtClientService) {}
+  constructor(private service: JwtClientService,private user:UserDetails,private alert:alertServies) {}
 
   ngOnInit(): void {}
 
@@ -97,5 +98,31 @@ return true;
     this.authRequest.userName = username;
     this.authRequest.password = pass;
    return this.getAccessToken();
+  }
+
+  public signup(email,username, pass) {
+    console.log('from login method' + username + '  ' + pass);
+    this.user.userName = username;
+    this.user.password = pass;
+    this.user.email=email;
+this.user.role="USER";
+    this.service.signup(this.user).subscribe(
+    (data) => {
+
+      if(data=="Signed Up"){
+        this.alert.successAlertAdmin('User Created Successfully');
+      }
+      else{
+        this.alert.errorAlert("Signup Failed !!! .Please Contact Administrator")
+      }
+      console.log("sign up message",data);
+    },
+    (error) => {
+
+
+
+
+    }
+  );
   }
 }

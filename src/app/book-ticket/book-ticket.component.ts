@@ -88,6 +88,10 @@ debugger
           if(error.error.text=="Ticket booked"){
             this.alert.successAlertTicketBooked();
           }
+          else{
+            debugger
+            this.alert.errorAlert(error.error.text);
+          }
         }
       )
 
@@ -103,8 +107,8 @@ debugger
 
   createItem(): FormGroup {
     return this.fb.group({
-      name: '',
-      age: '',
+      passangerName: '',
+      passengerAge: '',
       gender: '',
       meal: '',
       customerId:Number(this.customer_id),

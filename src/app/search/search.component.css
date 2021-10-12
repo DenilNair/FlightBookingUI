@@ -48,3 +48,21 @@
   outline: none;
 color: blue;
 font-weight: bold;}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.ng-autocomplete {
+  width:100%;
+  max-width: 600px;
+  display: table;
+  margin: 0 auto;
+}
+.destination{
+  border: none;
+}

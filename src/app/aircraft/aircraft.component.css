@@ -52,3 +52,11 @@ margin: 0%;
   padding: 0%;
   margin-right: 3%;
 }
+
+.cenlist{text-align: center;
+  align-items: center;
+  margin: auto;
+  width: 80%;
+  /*border: 3px solid green;*/
+  padding-left: 10px;
+}

@@ -1,170 +1,118 @@
-
-
-<div class="modal"  tabindex="-1" role="document"  [ngStyle]="{'display':display}">
- <div class="modal-dialog modal-dialog-centered" role="document">
-   <div class="modal-content">
-
-      <div class="modal-header border-bottom-0">
-        <h5 class="modal-title" id="exampleModalLabel">Login Account</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close" (click)="onCloseHandled()"
+<form #search="ngForm" (ngSubmit)="SearchFlights(search.value)">
+  <div class="row">
+    <div class="col">
+      <div class="ng-autocomplete">
+        <ng-autocomplete
+          [data]="airport"
+          [searchKeyword]="keyword"
+          name="source"
+          placeholder="Source"
+          class="form-control"
+          (selected)="selectEvent($event)"
+          (inputChanged)="onChangeSearch($event)"
+          (inputFocused)="onFocused($event)"
+          historyIdentifier="airport"
+          [itemTemplate]="itemTemplate"
+          [notFoundTemplate]="notFoundTemplate"
+          ngModel
         >
-          <span aria-hidden="true">&times;</span>
-        </button>
+        </ng-autocomplete>
+
+        <ng-template #itemTemplate let-item>
+          <a [innerHTML]="item.name"></a>
+        </ng-template>
+
+        <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+        </ng-template>
       </div>
-      <form #loginFormSearch="ngForm" (ngSubmit)="login(loginFormSearch.value)" >
-
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="email1">Email address</label>
-            <input
-              type="email"
-              name="username"
-              class="form-control"
-              id="email1"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              ngModel
-            />
-          </div>
-          <div class="form-group">
-            <label for="password1">Password</label>
-            <input
-              type="password"
-              name="pass"
-              class="form-control"
-              id="password1"
-              placeholder="Password"
-              ngModel
-            />
-          </div>
-        </div>
-        <div class="modal-footer border-top-0 d-flex justify-content-center">
-          <button class="btn btn-primary" #keywordsInput>Submit</button>
-        </div>
-        <button class="transparentbutton" (click)="openSignup()">Create an Account?</button>
-      </form>
     </div>
-   <!-- /.modal-content -->
- </div><!-- /.modal-dialog -->
-</div><!-- /.modal !-->
 
-<div
-  class="modal "
 
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
- [ngStyle]="{'display':displaySignup}"
->
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header border-bottom-0">
-        <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-           (click)="onCloseHandled()"
+<div class="col">
+        <ng-autocomplete
+          [data]="airport"
+          [searchKeyword]="keyword"
+          name="destination"
+          placeholder="Destination"
+          class="form-control"
+          (selected)="selectEvent($event)"
+          (inputChanged)="onChangeSearch($event)"
+          (inputFocused)="onFocused($event)"
+
+          historyIdentifier="airport"
+          [itemTemplate]="itemTemplate"
+          [notFoundTemplate]="notFoundTemplate"
+          ngModel
         >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="email1">Email address</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email1"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-            />
-            <small id="emailHelp" class="form-text text-muted"
-              >Your information is safe with us.</small
-            >
-          </div>
-          <div class="form-group">
-            <label for="password1">Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="password1"
-              placeholder="Password"
-            />
-          </div>
-          <div class="form-group">
-            <label for="password1">Confirm Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="password2"
-              placeholder="Confirm Password"
-            />
-          </div>
-        </div>
-        <div class="modal-footer border-top-0 d-flex justify-content-center">
-          <button
-            type="submit"
-            class="btn btn-success"
-            data-dismiss="modal"
-            (click)="openSignup()"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+        </ng-autocomplete>
+
+        <ng-template #itemTemplate let-item>
+          <a [innerHTML]="item.name"></a>
+        </ng-template>
+
+        <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+        </ng-template>
+
 </div>
 
-<form  #search="ngForm" (ngSubmit)="SearchFlights(search.value)">
-  <div class="row" >
     <div class="col">
-      <input type="text" name="source"  class="form-control" placeholder="source" ngModel>
-    </div>
+      <input
+        type="text"
+        name="departure"
+        onfocus="(this.type='datetime-local')"
+        class="form-control"
+        placeholder="Departure"
 
-    <div class="col">
-      <input type="text" name="destination" class="form-control" placeholder="destination" ngModel>
-    </div>
-    <div class="col">
-      <input  type="type" name="departure" onfocus="(this.type='datetime-local')" class="form-control" placeholder="Departure" ngModel>
+        ngModel
+      />
     </div>
     <div class="col">
       <button class="btn btn-primary">Search</button>
     </div>
   </div>
 </form>
+
 <div *ngIf="listFlight.length">
-<table>
-<tr>
+  <table>
+    <tr>
+      <th class="deni">Flight Number</th>
+      <th class="deni">Source</th>
 
-<th class="deni">Flight Number</th>
-<th class="deni">Source</th>
+      <th class="deni"></th>
+      <th class="deni">Schedule Start Time</th>
+      <th class="deni">Schedule End TIme</th>
+      <th class="deni">Available Seats</th>
+      <th class="deni">Available Seats</th>
+    </tr>
 
-<th class="deni"></th>
-<th class="deni">Schedule Start Time</th>
-<th class="deni">Schedule End TIme</th>
-<th class="deni">Available Seats</th>
-<th class="deni">Available Seats</th>
-</tr>
-
-<tr *ngFor ="let flight of listFlight">
-
-<td class="deni">{{flight.flightNo}}</td>
-<td class="deni">{{flight.source}}</td>
-<td class="deni"><div class="line" style="margin-right: 2px;"><p class="timediff">{{flight.scheduledEndTime-flight.scheduledStartTime}}</p></div></td>
-<td class="deni">{{flight.destination}}</td>
-<td class="deni">{{flight.scheduledStartTime}}</td>
-<td class="deni">{{flight.scheduledEndTime}}</td>
-<td class="deni">{{flight.availableSeat}}</td>
-<td class="deni">  <button class="btn btn-primary bookflight" (click)="bookticket(flight)" data-toggle="modal" data-target="#myModallogin
-">Book Ticket</button></td>
-</tr>
-</table>
+    <tr *ngFor="let flight of listFlight">
+      <td class="deni">{{ flight.flightNo }}</td>
+      <td class="deni">{{ flight.source }}</td>
+      <td class="deni">
+        <div class="line" style="margin-right: 2px">
+          <p class="timediff">
+            {{ flight.scheduledEndTime - flight.scheduledStartTime }}
+          </p>
+        </div>
+      </td>
+      <td class="deni">{{ flight.destination }}</td>
+      <td class="deni">{{ flight.scheduledStartTime }}</td>
+      <td class="deni">{{ flight.scheduledEndTime }}</td>
+      <td class="deni">{{ flight.availableSeat }}</td>
+      <td class="deni">
+        <button
+          class="btn btn-primary bookflight"
+          (click)="bookticket(flight)"
+          data-toggle="modal"
+          data-target="#myModallogin
+"
+        >
+          Book Ticket
+        </button>
+      </td>
+    </tr>
+  </table>
 </div>
-<div *ngIf="noFlight"><p> No Flight found</p></div>
-
+<div *ngIf="noFlight"><p>No Flight found</p></div>

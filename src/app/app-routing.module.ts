@@ -7,6 +7,7 @@ import { NotauthorizedComponent } from './notauthorized/notauthorized.component'
 import { TicketComponent } from './ticket/ticket.component';
 import { BookTicketComponent } from './book-ticket/book-ticket.component';
 import { AppComponent } from './app.component';
+import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
 const routes: Routes = [
   { path: 'aircraft-component',
   canActivate: [AuthGuard],
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'error', component: NotauthorizedComponent },
   { path: 'book-ticket',canActivate: [AuthGuard], component: BookTicketComponent },
   { path: 'home', component: AppComponent },
+   { path: 'ticket-details', component: TicketDetailComponent }
 ];
 
 @NgModule({

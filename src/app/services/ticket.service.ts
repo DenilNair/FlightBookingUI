@@ -20,4 +20,15 @@ export class TicketService {
     const headers = {  'Content-Type': 'application/json' ,'Authorization':token};
    return  this.httpClient.get('http://localhost:9097/customer/viewTicket/id/'+userid,{headers});
   }
+
+  getTicketDetailsByBookingId(bookingId):Observable<any>{
+    let token=localStorage.getItem('token');
+    debugger
+   token= "Bearer "+token.substring(1,token.length-1);
+   let userid=localStorage.getItem('id');
+   debugger
+   userid= userid.substring(1,userid.length-1);
+   const headers = {  'Content-Type': 'application/json' ,'Authorization':token};
+  return  this.httpClient.get('http://localhost:9097/customer/viewTicket/bookingId/'+bookingId,{headers});
+ }
 }

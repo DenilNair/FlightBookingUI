@@ -7,7 +7,7 @@ export class alertServies{
 
   constructor(private httpClient:HttpClient){}
   simpleAlert(data){
-    Swal.fire('Backend '+data+ 'is down. Please Contact Administrator');
+    Swal.fire('Backend '+data+ ' is down. Please Contact Administrator');
   }
 
   successAlertNotification(data){
@@ -19,7 +19,7 @@ export class alertServies{
   }
   successAlertAdmin(data){
 
-    Swal.fire(data, "jgjh", "success");
+    Swal.fire(data, "", "success");
   }
   errorAlert(data){
     Swal.fire({

@@ -27,9 +27,19 @@ import { ToastrModule } from 'ngx-toastr';
 import { NotauthorizedComponent } from './notauthorized/notauthorized.component';
 import { DatePipe } from '@angular/common';
 import { BookTicketComponent } from './book-ticket/book-ticket.component';
+import { UserDetails } from './classes/UserDetails';
+import { AirportListService } from './services/airportListServices';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { LoadComponentService } from './services/loadComponentService';
+import { BookingDetails } from './classes/BookingDetails';
+import { ProfileService } from './services/ProfileService';
+import { ProfileDetails } from './classes/ProfileDetails';
+import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
+
+
 @NgModule({
   declarations: [
-    AppComponent,
+AppComponent,
     SearchComponent,
     ListFlightComponent,
     AircraftComponent,
@@ -37,7 +47,8 @@ import { BookTicketComponent } from './book-ticket/book-ticket.component';
     ProfileComponent,
     SecurityComponent,
     NotauthorizedComponent,
-    BookTicketComponent
+    BookTicketComponent,
+    TicketDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +57,12 @@ import { BookTicketComponent } from './book-ticket/book-ticket.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AngularMaterialModule, ToastrModule.forRoot()
+    AngularMaterialModule, ToastrModule.forRoot(),
+    AutocompleteLibModule,
+
   ],
-  providers: [flightDetailsServies,aircraftDetailsServies,SecurityComponent,DatePipe,TicketDetails,alertServies],
+  providers: [flightDetailsServies,aircraftDetailsServies,SecurityComponent,DatePipe,TicketDetails,alertServies,UserDetails,AirportListService,SearchComponent,LoadComponentService
+  ,BookingDetails,ProfileService,ProfileDetails],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

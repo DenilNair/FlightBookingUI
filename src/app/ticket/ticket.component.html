@@ -2,86 +2,69 @@
   <mat-tab-group>
     <mat-tab label="Upcoming">
       <br />
-      <mat-list *ngIf="listTicket.length">
-        <mat-card class="matcard" *ngFor="let ticket of listTicket">
+      <mat-list *ngIf="upcomingListTicket.length">
+        <mat-card class="matcard" *ngFor="let ticket of upcomingListTicket">
           <mat-card-title>{{ ticket.passangerName }}</mat-card-title>
           <mat-card-subtitle>End</mat-card-subtitle>
           <mat-card-content>
             <div class="row">
               <div class="col">
-                <input
-                  type="text"
-                  name="source"
-                  class="form-control"
-                  placeholder="source"
-                />
+                <label>Booking id</label>
+              </div>
+              <div class="col board-details">
+                <label>{{ ticket.bookingId }}</label>
               </div>
 
               <div class="col">
-                <input
-                  type="text"
-                  name="destination"
-                  class="form-control"
-                  placeholder="destination"
-                />
+                <label>customer id</label>
               </div>
-              <div class="col">
-                <input
-                  type="type"
-                  name="departure"
-                  onfocus="(this.type='datetime-local')"
-                  class="form-control"
-                  placeholder="Departure"
-                />
+              <div class="col board-details">
+                <label>{{ ticket.customerId }} </label>
               </div>
-              <div class="col">
-                <button class="btn btn-primary">Search</button>
+               <div class="col">
+                <label>Gate Number </label>
               </div>
+              <div class="col board-details">
+                <label>{{ ticket.gateNumber }} </label>
+              </div>
+
             </div>
             <div class="row">
               <div class="col">
-                <input
-                  type="text"
-                  name="source"
-                  class="form-control"
-                  placeholder="source"
-                />
+                <label>Source </label>
+              </div>
+              <div class="col board-details">
+                <label>{{ ticket.source }} </label>
               </div>
 
-              <div class="col">
-                <input
-                  type="text"
-                  name="destination"
-                  class="form-control"
-                  placeholder="destination"
-                />
+               <div class="col">
+                <label> Destination</label>
               </div>
-              <div class="col">
-                <input
-                  type="type"
-                  name="departure"
-                  onfocus="(this.type='datetime-local')"
-                  class="form-control"
-                  placeholder="Departure"
-                />
+              <div class="col board-details">
+                <label>{{ ticket.destination }} </label>
               </div>
+
+
               <div class="col">
-                <button class="btn btn-primary">Search</button>
+                <label>Total Pasenger</label>
+              </div>
+              <div class="col board-details">
+                <label>{{ ticket.totalPasenger }} </label>
               </div>
             </div>
           </mat-card-content>
           <mat-card-actions align="end">
-            <button mat-button class="button-blue">View Details</button>
-            <button mat-button class="button-red">Cancel</button>
+            <button mat-button class="button-blue" (click)="openTic(ticket)">View Details</button>
+            <button mat-button class="button-red">Modify</button>
           </mat-card-actions>
         </mat-card>
       </mat-list>
-        <div *ngIf="listTicket.length==0">No Ticket found</div>
+      <div *ngIf="listTicket.length == 0">No Ticket found</div>
     </mat-tab>
     <mat-tab label="Past Journey">
       <br />
-      <mat-list *ngIf="listTicket.length">
-        <mat-card class="matcard" *ngFor="let ticket of listTicket">
+      <mat-list *ngIf="pastListTicket.length">
+        <mat-card class="matcard" *ngFor="let ticket of pastListTicket">
           <mat-card-title>{{ ticket.passangerName }}</mat-card-title>
           <mat-card-subtitle>End</mat-card-subtitle>
           <mat-card-content>
@@ -154,7 +137,7 @@
           </mat-card-actions>
         </mat-card>
       </mat-list>
-       <div *ngIf="listTicket.length==0">No Ticket found</div>
+      <div *ngIf="listTicket.length == 0">No Ticket found</div>
     </mat-tab>
     <mat-tab label="Cancelled Flights">
       <br />
@@ -222,7 +205,7 @@
           </mat-card-actions>
         </mat-card>
       </mat-list>
-      <div *ngIf="listTicket.length==0">No Ticket found</div>
+      <div *ngIf="listTicket.length == 0">No Ticket found</div>
     </mat-tab>
   </mat-tab-group>
 </div>

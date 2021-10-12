@@ -6,23 +6,21 @@ import { catchError, retry } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class JwtClientService {
+export class ProfileService {
 
   constructor(private httpClient:HttpClient) { }
 
-  public generateToken(request ){
+
+  public setProfile(request,token ){
     console.log("generateToken  ");
-    return this.httpClient.post("http://localhost:9192/authenticate",request,{responseType:'text' as 'json'});
-  }
-  public signup(request ){
-    console.log("generateToken  ");
-    return this.httpClient.post("http://localhost:9192/signup",request,{responseType:'text' as 'json'});
+    const headers=new HttpHeaders().set("Authorization",token);
+    return this.httpClient.put("http://localhost:9097/customer/",{headers,request},{responseType:'text' as 'json'});
   }
 
-  public welcome(token){
+  public getProfile(token){
     let tokenStr='Bearer '+token;
     const headers=new HttpHeaders().set("Authorization",tokenStr);
-    return this.httpClient.get("http://localhost:9192/",{headers,responseType:'text' as 'json'}).pipe(catchError(this.handleErrorrror));
+    return this.httpClient.get("http://localhost:9097/customer/profile",{headers,responseType:'text' as 'json'}).pipe(catchError(this.handleErrorrror));
   }
   /**
    * getFlights(path):Observable<any>{

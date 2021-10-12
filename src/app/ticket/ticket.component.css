@@ -31,3 +31,6 @@
 .x-scroll-disabled {
 	overflow-y: hidden;
 }
+.board-details{
+  font-weight: bold;
+}
