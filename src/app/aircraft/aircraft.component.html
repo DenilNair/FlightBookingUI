@@ -4,7 +4,7 @@
   </div>
   <table>
     <div class="row">
-      <div class="col-6">
+      <div class="col-4">
         <div id="container" class="addAircraft addcol">
           <h2>Add a new Aircraft</h2>
           <form
@@ -122,6 +122,16 @@
                   class="form-control"
                   placeholder="End Date"
                   onfocus="(this.type='datetime-local')"
+                  ngModel
+                />
+              </div>
+               <div class="col">
+                <input
+                  type="text"
+                  name="availableSeat"
+                  class="form-control"
+                  placeholder="Total Seat"
+
                   ngModel
                 />
               </div>

@@ -111,6 +111,15 @@
         >
           Book Ticket
         </button>
+           <button *ngIf="role=='ADMIN'"
+          class="btn btn-danger cancelflight"
+          (click)="CancelFlight(flight)"
+          data-toggle="modal"
+          data-target="#myModallogin
+"
+        >
+          Cancel Flight
+        </button>
       </td>
     </tr>
   </table>

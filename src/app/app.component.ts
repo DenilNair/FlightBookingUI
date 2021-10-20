@@ -53,7 +53,8 @@ export class AppComponent {
           console.log('accessWithToken error found' ,error);
           localStorage.removeItem('token');
           localStorage.removeItem('id');
-          localStorage.removeItem('role')
+          localStorage.removeItem('role');
+          this.loggedIn=false;
 
         }
       );
@@ -199,11 +200,12 @@ this.alertt.simpleAlert(' login ')
   signup(data) {
     debugger
     console.log('signup');
-    if(data.password!=data.confirmpass){
+    if(data.password!=data.reenterpass){
       this.alertt.errorAlert("Password mistmatch");
     }
     else{
-      this.securityComponent.signup(data.email,data.username,data.password)
+
+      this.securityComponent.signup(data.email,data.username.toLowerCase(),data.password)
       this.openSnackBar("Signup Successfull");
     //  window.location.reload();
   }

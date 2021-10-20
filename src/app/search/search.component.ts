@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
   //keyword = 'name';
   keyword = 'name';
   public airport:any;
-
+role='GUEST';
   //
   ////////////////////////
   constructor(
@@ -36,7 +36,9 @@ export class SearchComponent implements OnInit {
     private airports: AirportListService,
     private loadCompo:LoadComponentService,private appCompo:AppComponent
   ) {
-
+if(localStorage.getItem('role') == '"ADMIN"'){
+  this.role='ADMIN';
+}
   }
 
 
@@ -340,5 +342,29 @@ export class SearchComponent implements OnInit {
 
   toLoadEverything() {
     console.log('loading');
+  }
+
+
+  CancelFlight(data){
+    console.log('bookticket bookticket bookticket', data.flightNo);
+    debugger;
+    if (!localStorage.getItem('token')) {
+      this.alert.successAlertNotification('Login as User to Book Ticket .');
+
+      console.log('login check ', this.showLogin);
+    } else {
+      if (localStorage.getItem('role') == '"ADMIN"') {
+        this.alert.successAlertNotification(
+          'Coming Soon...'
+        );
+      } else {
+        this.loadCompo.setLoadComponent('book-ticket');
+        this.appCompo.redirectToBookingPage(data)
+      //  this.router.navigate(['/book-ticket'], { state: { flight: data } });
+      //  this..redirectToBookingPage(data);
+      }
+
+      // this.router.navigate(['/book-ticket'])
+    }
   }
 }
